@@ -2,9 +2,9 @@
   "name": "nodejs-mongo-redis",
   "version": "1.0.0",
   "description": "just self development",
-  "main": "index.js",
+  "main": "bin/index.js",
   "scripts": {
-    "dev": "nodemon index.js"
+    "dev": "nodemon bin/index.js"
   },
   "repository": {
     "type": "git",
@@ -23,6 +23,8 @@
   },
   "homepage": "https://github.com/mamunsyuhada/nodejs-mongo-redis#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "dotenv": "^9.0.2",
+    "express": "^4.17.1",
+    "redis": "^3.1.2"
   }
 }
