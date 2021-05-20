@@ -1,7 +1,7 @@
 title Redis Chache Node JS
-Web -> Redis: fetch data (check available chache on Redis)
-Redis->Web: reply (cache is available or not)
-Web->DB: cache is not available, get data from DB
-DB->Web: return as data
-Web->Redis: save data as cache
-Web->Web: chace available, respond to client
+WebService-> Redis: fetch data (check available chache on Redis)
+Redis->WebService: reply (cache is available or not)
+WebService->DB: cache is not available, get data from DB
+DB->WebService: return as data
+WebService->Redis: save data as cache
+WebService->WebService: cache available, respond to client
