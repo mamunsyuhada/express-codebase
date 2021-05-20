@@ -7,5 +7,5 @@
 
 ### Install package
 ```
-$ npm i
+npm i
 ```
