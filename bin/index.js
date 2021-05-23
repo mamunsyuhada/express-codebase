@@ -1,10 +1,13 @@
 const Express = require('express');
+const RespondTime = require('response-time');
 
 const DummiesData = require('../dummiesData');
 const Config = require('../infra/globalconfig');
 const Redis = require('../db/redis');
 
 const App = Express();
+App.use(RespondTime());
+
 
 App.get('/', async (_, res) => {
     return res.json({
