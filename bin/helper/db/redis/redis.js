@@ -1,6 +1,6 @@
 const RedisClient = require('redis').createClient;
 
-const Config = require('../infra/globalconfig');
+const Config = require('../../../infra/globalconfig');
 
 const RedisCon = RedisClient({
     port:Config.redis.port,
