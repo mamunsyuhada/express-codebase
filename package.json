@@ -1,28 +1,29 @@
 {
-  "name": "nodejs-mongo-redis",
+  "name": "express-codebase",
   "version": "1.0.0",
-  "description": "just self development",
+  "description": "a template to create backend service",
   "main": "bin/index.js",
   "scripts": {
     "dev": "nodemon bin/index.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mamunsyuhada/codebase"
+    "url": "git+https://github.com/mamunsyuhada/express-codebase"
   },
   "keywords": [
     "nodejs",
     "redis",
     "mongo",
     "codebase",
-    "express"
+    "express",
+    "microservices"
   ],
   "author": "Imam Syuhada",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/mamunsyuhada/nodejs-mongo-redis/issues"
+    "url": "https://github.com/mamunsyuhada/express-codebase/issues"
   },
-  "homepage": "https://github.com/mamunsyuhada/nodejs-mongo-redis#readme",
+  "homepage": "https://github.com/mamunsyuhada/express-codebase#readme",
   "dependencies": {
     "compression": "^1.7.4",
     "dotenv": "^9.0.2",
