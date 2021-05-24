@@ -1,100 +1,35 @@
 const Express = require('express');
 const RespondTime = require('response-time');
+const Compression = require('compression');
 
-const DummiesData = require('../dummiesData');
-const Config = require('../infra/globalconfig');
-const Redis = require('../db/redis');
+const Config = require('./infra/globalconfig');
+const Db = require('./helper/db/index');
+const Log = require('./helper/util/logger');
+const SendResponse = require('./helper/util/sendrespond');
+
+const AuthRouter = require('./router/auth');
+const HealthCheck = require('./router/healthcheck');
 
 const App = Express();
+
+App.disable('x-powered-by');
+App.use(Compression());
 App.use(RespondTime());
+App.use(Express.json());
+App.use(Express.urlencoded({ extended: true }));
 
 
-App.get('/', async (_, res) => {
-    return res.json({
-        error: null,
-        data: DummiesData,
-        message: 'Success to get data from dummies'
-    }); 
-});
+App.use('/auth', AuthRouter);
+App.use('/healthcheck', HealthCheck);
 
-App.get('/fetch', async (req, res) => {
-    const { id } = req.query
-
-    const { reply } = await Redis.get(id);
-    if(reply){
-        return res.json({
-            error: null,
-            data: JSON.parse(reply),
-            message: 'success to get data from redis',
-        });
-    }
-
-    const findOneById = (datas, index) =>{
-        for(item of datas){
-            if(item.id===index){
-                return item
-            }
-        }
-        return null
-    }
-    const data = findOneById(DummiesData, parseInt(id));
-    if(data===null){
-        return res.status(404).json({
-            error: 'unknown id',
-            data,
-            message: 'Sorry your id request is not found'
-        });
-    }
-    
-    Redis.set(id, JSON.stringify(data));
-
-    return res.json({
-        error: null,
-        data,
-        message: 'success to get data from dummies',
-    });
-});
-
-App.get('/fetch-expired', async (req, res) => {
-    const { id } = req.query
-
-    const { reply } = await Redis.get(id);
-    if(reply){
-        return res.json({
-            error: null,
-            data: JSON.parse(reply),
-            message: 'success to get data from redis with expired',
-        });
-    }
-
-    const findOneById = (datas, index) =>{
-        for(item of datas){
-            if(item.id===index){
-                return item
-            }
-        }
-        return null
-    }
-    const data = findOneById(DummiesData, parseInt(id));
-    if(data===null){
-        return res.status(404).json({
-            error: 'unknown id',
-            data,
-            message: 'Sorry your id request is not found'
-        });
-    }
-    
-    Redis.setEx(id,JSON.stringify(data), 30);
-
-    return res.json({
-        error: null,
-        data,
-        message: 'success to get data from dummies, and your request was store at RAM with expired',
-    });
-});
+App.use('/', async(_, res) => { return SendResponse.success.ok(res, { message:'Welcome to my codebase' }) });
+App.use(async(_, res) => { return SendResponse.error.notFound(res, { message: 'unknown endpoint'}) });
 
 const PORT = Config.app.port || 3030
 
-App.listen(PORT, () => {
-    console.log(`server is running on ${PORT}`);
+App.listen(PORT, async() => {
+    const ctx = 'index-appListen'
+    
+    Db.Mongoo.init();
+    Log.info(ctx, `server is running on ${PORT}`);
 });
