@@ -1,7 +1,7 @@
 {
-  "name": "nodejs-mongo-redis",
+  "name": "express-codebase",
   "version": "1.0.0",
-  "description": "just self development",
+  "description": "a template to create backend service",
   "main": "bin/index.js",
   "scripts": {
     "dev": "nodemon bin/index.js"
@@ -15,7 +15,8 @@
     "redis",
     "mongo",
     "codebase",
-    "express"
+    "express",
+    "microservices"
   ],
   "author": "Imam Syuhada",
   "license": "ISC",
