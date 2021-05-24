@@ -1,7 +1,10 @@
 # Caching nodejs using Redis with mongo-db
 
 ## Scenario
+<details>
+<summary>Click to toggle contents of `code`</summary>
 ![scenario](docs/scenario-redis-chache-nodejs.png)
+</details>
 
 ## Wanna to try
 
