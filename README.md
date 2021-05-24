@@ -3,9 +3,9 @@
 ## Scenario
 
 <details>
-  <summary>Thank you</summary>  
+  <summary>Redis Cache</summary>  
   
-  ![Thank you](docs/scenario-redis-chache-nodejs.png)
+  ![Redis Cache](docs/scenario-redis-chache-nodejs.png)
 </details>
 
 ## Wanna to try
