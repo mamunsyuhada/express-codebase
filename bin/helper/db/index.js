@@ -1,12 +1,10 @@
 const Mongoo = require('./mongo/mongodb');
 
-const HealthCheck = () => {
-    return {
-        mongoodb: Mongoo.healthCheck()
-    }
-}
+const HealthCheck = () => ({
+	mongoodb: Mongoo.healthCheck(),
+});
 
-module.exports = { 
-    Mongoo,
-    HealthCheck
-}
+module.exports = {
+	Mongoo,
+	HealthCheck,
+};
