@@ -4,7 +4,9 @@
   "description": "a template to create backend service",
   "main": "bin/index.js",
   "scripts": {
-    "dev": "nodemon bin/index.js"
+    "dev": "nodemon bin/index.js",
+    "lint": "eslint bin/",
+    "lint-fix": "eslint bin/ --fix"
   },
   "repository": {
     "type": "git",
@@ -34,5 +36,8 @@
     "nanoid": "^3.1.23",
     "redis": "^3.1.2",
     "response-time": "^2.3.2"
+  },
+  "devDependencies": {
+    "eslint": "^7.27.0"
   }
 }
