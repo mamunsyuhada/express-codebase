@@ -4,7 +4,8 @@
   "description": "a template to create backend service",
   "main": "bin/index.js",
   "scripts": {
-    "dev": "nodemon bin/index.js",
+    "start": "node index.js",
+    "dev": "nodemon index.js",
     "lint": "eslint bin/",
     "lint-fix": "eslint bin/ --fix"
   },

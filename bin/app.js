@@ -3,7 +3,7 @@ const RespondTime = require('response-time');
 const Compression = require('compression');
 
 const Config = require('./infra/globalconfig');
-const Db = require('./helper/db/index');
+
 const Log = require('./helper/util/logger');
 const SendResponse = require('./helper/util/sendrespond');
 
@@ -26,9 +26,9 @@ App.use(async (_, res) => SendResponse.error.notFound(res, { message: 'unknown e
 
 const PORT = Config.app.port || 3030;
 
-App.listen(PORT, async () => {
-	const ctx = 'index-appListen';
-
-	Db.Mongoo.init();
-	Log.info(ctx, `server is running on ${PORT}`);
-});
+module.exports = () => {
+	App.listen(PORT, async () => {
+		const ctx = 'index-appListen';
+		Log.info(ctx, `server is running on ${PORT}`);
+	});
+};
