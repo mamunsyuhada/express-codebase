@@ -23,7 +23,6 @@ npm i
 ### Copy .env.example to .env
 ```
 cp .env.example .env #ducplicate .env
-
 ```
 ### Then modify your .env
 ```
