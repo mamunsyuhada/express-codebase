@@ -3,6 +3,12 @@
 ## Scenario
 
 <details>
+  <summary>Register with Basic Auth</summary>  
+  
+  ![Register with Basic Auth](docs/scenario-basic-register.png)
+</details>
+
+<details>
   <summary>Redis Cache</summary>  
   
   ![Redis Cache](docs/scenario-redis-chache-nodejs.png)
