@@ -71,6 +71,15 @@ const conflict = async (res, obj) => {
 	});
 };
 
+const forbidden = async (res, obj) => {
+	const { data, message } = obj;
+	return res.status(statuscode.error.FORBIDDEN).json({
+		err: true,
+		data,
+		message,
+	});
+};
+
 module.exports = {
 	success: {
 		ok,
@@ -81,5 +90,6 @@ module.exports = {
 		notFound,
 		internalError,
 		conflict,
+		forbidden,
 	},
 };

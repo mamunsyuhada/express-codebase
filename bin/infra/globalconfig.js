@@ -3,6 +3,13 @@ require('dotenv').config();
 module.exports = {
 	app: {
 		port: Number(process.env.APP_PORT),
+		bcrypt: Number(process.env.APP_BCRYPT),
+		basicAuth: [
+			{
+				user: process.env.APP_BASICAUTH_USER, 
+				pass: process.env.APP_BASICAUTH_PASSWORD
+			}
+		]
 	},
 	redis: {
 		host: process.env.REDIS_HOST,
