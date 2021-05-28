@@ -14,9 +14,17 @@ const init = async () => {
 		useCreateIndex: true,
 		authSource: 'admin',
 	}).then(() => {
-		Log.success(ctx, 'successfully connected to the database');
+		Log.success(ctx, 'successfully connected');
 	}).catch((err) => {
 		Log.error(ctx, `Could not connect to the database. Exiting now... ${err}`);
+	});
+
+	mongoose.connection.on('connected', () => {
+		Log.success(ctx, `connection connected, connected to the database (${mongoo.db})`);
+	});
+
+	mongoose.connection.on('error', (err) => {
+		Log.error(ctx, `connection error, Could not connect to the database. Exiting now... ${err}`);
 	});
 };
 

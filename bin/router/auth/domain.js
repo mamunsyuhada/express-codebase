@@ -1,19 +1,26 @@
+const bcrypt = require('bcrypt');
+
 const CommandUser = require('../../helper/db/mongo/User/Command');
 const QueryUser = require('../../helper/db/mongo/User/Query');
+const Config = require('../../infra/globalconfig');
 
 const SendResponse = require('../../helper/util/sendrespond');
 
 const Register = async (payload, res) => {
-	const { email } = payload;
-	const user = await QueryUser.findOne({ email });
+	const { email, username, password } = payload;
+	const user = await QueryUser.findOne({ email, username });
 	if (user) {
 		return SendResponse.error.conflict(res, {
 			message: 'user already exist',
 		});
 	}
-	const { _id } = await CommandUser.insert(payload);
+
+	payload.password = await bcrypt.hash(password, Config.app.bcrypt);
+
+	const { userId } = await CommandUser.insert(payload);
+
 	return SendResponse.success.created(res, {
-		data: { _id },
+		data: { userId },
 		message: 'congrats, created',
 	});
 };
